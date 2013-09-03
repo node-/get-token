@@ -1,0 +1,9 @@
+Uses iostream, fstream, and cmath. 
+Compile with:
+    g++ src/gettoken.cpp src/stringutils.cpp -o gettoken
+Then run with:
+    ./gettoken
+
+unannotated.txt is the input file, and already has sample data in it.
+annotated_sorted.txt is a tab delimited file, sorted alphabetically by default, and can be viewed in excel.
+dedupe.jpg is a poorly drawn picture that I was brainstorming on for the dedupe algorithm. check it out if my explanation is poor in the source files.
