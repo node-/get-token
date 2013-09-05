@@ -21,54 +21,57 @@ void StrCat(char MyString[], char CatThis[])
     MyString[i+appendVal] = '\0';
 }
 
-int StrLen(char MyString[])
+int StrLen(char* MyString)
 {
     int length = 0;
-    while (MyString[length] != '\0') {
+    while (*MyString != '\0') {
         // loop through memory until MyString[i] is null
-        length++;
+        MyString++; length++;
     }
     return length + 1;
     // the +1 compensates for the null character
 }
 
-void StrCpy(char MyString[], char CopyThis[])
+void StrCpy(char* MyString, char* CopyThis)
 {
     int CopyThisLen = StrLen(CopyThis);
     for (int i = 0; CopyThisLen != i; i++) // max index is the length of the copied string
     {
-        MyString[i] = CopyThis[i];
+        *MyString = *CopyThis;
+        MyString++; CopyThis++;
         // set MyString at index equal to CopyThis at index
     }
 }
 
-int StrCmp(char MyString[], char Compare[])
+int StrCmp(char *MyString, char *Compare)
 {
     int largestStrLen = StrLen(MyString) > StrLen(Compare) ? StrLen(MyString) : StrLen(Compare);
     // set largestStrLen to the length of whichever string has higher length
     for (int i = 0; largestStrLen != i; i++) {
-        if ((MyString[i] != '\0' || Compare[i] != '\0') && (MyString[i] != Compare[i])) {
+        if ((*MyString != '\0' || *Compare != '\0') && (*MyString != *Compare)) {
             // if the strings aren't equal AND neither characters are NULL characters
-            return MyString[i] > Compare[i] ? 1 : -1;
+            return *MyString > *Compare ? 1 : -1;
             // return 1 if the ascii value for MyString[i] is higher, -1 for inverse
             }
+        MyString++; Compare++;
     }
     return 0;
     // return 0 if the strings match and the NULL character is reached
 }
 
-void SubStr(char MyString[], char Sub[], int start, int length)
+void SubStr(char* MyString, char* Sub, int start, int length)
 {
     int j = 0;
+    MyString += start;
     int MyStringLen = StrLen(MyString);
     for (int i = start; (i <= MyStringLen) && (j <= length - 1); i++) {
         // the Sub array will have one less index value
         // j keeps track of which iteration of the loop we're on
         // i keeps track of the index for the char we are appending to Sub from MyString
-        Sub[j] = MyString[i];
-        j++;
+        *Sub = *MyString;
+        j++; Sub++; MyString++;
     }
-    Sub[j] = '\0';
+    *Sub = '\0';
 }
 
 int FindAny(char MyString[], char FindThese[], int pos)

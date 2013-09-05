@@ -15,9 +15,9 @@ using namespace std;
 // -- Function Declaration
 
 // Quicksorts data
-void quickSort(char **tokenList, char alltokenTypes[], int left, int right);
+void quickSort(char** tokenList, char alltokenTypes[], int left, int right);
 // removes all duplicates in a list
-void dedupe(char **tokenList, int tokenCountList[], char allTokenTypes[],int &tokenCount);
+void dedupe(char** tokenList, int tokenCountList[], char allTokenTypes[],int& tokenCount);
 
 // Creates a substring of characters from MyString
 // that can be found inside a character
@@ -25,7 +25,7 @@ void dedupe(char **tokenList, int tokenCountList[], char allTokenTypes[],int &to
 int Zorg(char MyString[], char CharSet[], char Substring[], int pos); 
 // Determines what type of token a character represents,
 // and creates an array containing the token.
-bool GetToken(char Block[], char Token[], char &tokenType, int &pos); 
+bool GetToken(char Block[], char Token[], char &tokenType, int& pos); 
 
 // -- Globals
 
@@ -79,6 +79,7 @@ int main ()
     cout << "|_______|_______|_______" << endl;
     writeFile << "Count\tType\tToken" << endl;
     for (int j = 0; j < tokenCount; j++) {
+        int block = allTokens[j][0];
         cout << "|  " << tokenCountList[j] << "\t"
              << "|  " << alltokenTypes[j] << "\t"
              << "|  '" << allTokens[j] << "'" << endl;
@@ -164,7 +165,6 @@ void dedupe(char **tokenList, int tokenCountList[], char alltokenTypes[], int &t
         }
     }
     tokenCount -= killCount;
-
     // loop over tmp new list
     for (i = 0; i <= tokenCount; i++) {
         alltokenTypes[i] = tmpTokenTypes[i];
@@ -188,9 +188,7 @@ bool GetToken(char Block[], char Token[], char &tokenType, int &pos)
     if (pos == -1 || pos >= BlockLen) {
         return false;
     } // stops when pos is -1 or if position exceeds length of block
-
-//  int block = Block[pos];
-//  cout << block << " - " << Block[pos] << endl;
+    int tokenVal = Token[0];
 
     // Logic for Substring creation
     if (Find(Alpha, Block[pos], pos) != -1) {       // if type Alpha
@@ -206,6 +204,5 @@ bool GetToken(char Block[], char Token[], char &tokenType, int &pos)
         tokenType = 'w';
         pos = Zorg(Block, Whitespace, Token, pos);
     }
-
     return true;
 }

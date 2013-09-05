@@ -12,19 +12,19 @@
 #define TOKEN_SIZE 2048  // size of a single token
 #define TTYPE_SIZE 2048  // size of token medata array
 
-int StrLen(char MyString[]);                    // return length of MyString
-int StrCmp(char MyString[], char Compare[]);    // compare two strings
+int StrLen(char* MyString);                    // return length of MyString
+int StrCmp(char* MyString, char *Compare);    // compare two strings
 void StrCpy(char MyString[], char CopyThis[]);  // CopyThis into MyString
 void StrCat(char MyString[], char CatThis[]);   // CatThis to the end of MyString
 
 // create substring of MyString with a certain length and starting position
-void SubStr(char MyString[], char Sub[], int start, int length);
+void SubStr(char *MyString, char *Sub, int start, int length);
 // return location of FindThis in MyString
 int Find(char MyString[], char FindThis[], int pos);
 // find a target character starting at a particular position
 int Find(char FindHere[], char target, int pos);
 // return position of first occurence of anything in MyString, in FindThese
-int FindAny(char MyString[], char FindThese[], int pos);
+int FindAny(char *MyString, char *FindThese, int pos);
 // position of first occurence of anything in MyString, not in FindThese
 int FindNotAny(char MyString[], char FindThese[], int pos);
 
